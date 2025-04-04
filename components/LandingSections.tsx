@@ -9,251 +9,217 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Check, X } from "lucide-react";
+import { ArrowRight, LineChart, Shield, Zap, BarChart2, Smartphone, Globe } from "lucide-react";
 
 const LandingSections = () => {
   return (
-    <div>
+    <div className="bg-[#0C1427] text-white">
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+        {/* Hero Section */}
+        <section className="w-full py-20 md:py-32 lg:py-40 bg-gradient-to-b from-[#0C1427] to-[#1A2342]">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  Capture Your Thoughts with NoteWorthy
+            <div className="flex flex-col items-center space-y-8 text-center">
+              <div className="space-y-6">
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none">
+                  Trade Zimbabwean Securities <br />
+                  <span className="text-[#FBBC06]">With Confidence</span>
                 </h1>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  The intelligent note-taking app that helps you organize your
-                  ideas, boost productivity, and never forget a thing.
+                <p className="mx-auto max-w-[700px] text-lg text-gray-300">
+                  C-Trade offers seamless access to ZSE listed stocks, bonds, and forex markets with real-time data and secure trading.
                 </p>
               </div>
-              <div className="space-x-4">
-                <Button asChild>
-                  <Link href="/signup">Get Started</Link>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button className="bg-[#048B3F] hover:bg-[#048B3F]/90 h-12 px-8" asChild>
+                  <Link href="/signup">Open Free Account</Link>
                 </Button>
-                <Button variant="outline" asChild>
-                  <Link href="#features">Learn More</Link>
+                <Button variant="outline" className="border-[#6571E3] text-[#6571E3] hover:bg-[#6571E3]/10 h-12 px-8" asChild>
+                  <Link href="/markets">Explore Markets</Link>
                 </Button>
               </div>
             </div>
           </div>
         </section>
-        <section
-          id="features"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
-        >
+
+        {/* Market Data Section */}
+        <section className="w-full py-12 bg-[#1A2342]">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
-              Key Features
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="p-6 rounded-lg bg-[#0C1427]/50">
+                <p className="text-2xl font-bold text-[#FBBC06]">157</p>
+                <p className="text-sm text-gray-300">Listed Stocks</p>
+              </div>
+              <div className="p-6 rounded-lg bg-[#0C1427]/50">
+                <p className="text-2xl font-bold text-[#FBBC06]">42</p>
+                <p className="text-sm text-gray-300">Government Bonds</p>
+              </div>
+              <div className="p-6 rounded-lg bg-[#0C1427]/50">
+                <p className="text-2xl font-bold text-[#FBBC06]">24/7</p>
+                <p className="text-sm text-gray-300">Forex Trading</p>
+              </div>
+              <div className="p-6 rounded-lg bg-[#0C1427]/50">
+                <p className="text-2xl font-bold text-[#FBBC06]">10K+</p>
+                <p className="text-sm text-gray-300">Active Traders</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-[#0C1427]">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-center mb-12">
+              Why Trade With <span className="text-[#FBBC06]">C-Trade</span>
             </h2>
-            <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
-              <div className="flex flex-col items-center space-y-4 text-center">
-                <div className="rounded-full bg-primary p-3">
-                  <svg
-                    className=" h-6 w-6 text-white"
-                    fill="none"
-                    height="24"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" x2="8" y1="13" y2="13" />
-                    <line x1="16" x2="8" y1="17" y2="17" />
-                    <line x1="10" x2="8" y1="9" y2="9" />
-                  </svg>
+            <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
+              <div className="flex flex-col items-center space-y-4 text-center p-6 rounded-lg bg-[#1A2342]">
+                <div className="rounded-full bg-[#6571E3] p-3">
+                  <LineChart className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold">Effortless Note-Taking</h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Quickly jot down your thoughts with our intuitive interface.
+                <h3 className="text-xl font-bold">Real-Time Market Data</h3>
+                <p className="text-gray-300">
+                  Get live ZSE prices, indices, and forex rates with our advanced trading platform.
                 </p>
               </div>
-              <div className="flex flex-col items-center space-y-4 text-center">
-                <div className="rounded-full bg-primary p-3">
-                  <svg
-                    className=" h-6 w-6 text-white"
-                    fill="none"
-                    height="24"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" />
-                  </svg>
+              <div className="flex flex-col items-center space-y-4 text-center p-6 rounded-lg bg-[#1A2342]">
+                <div className="rounded-full bg-[#6571E3] p-3">
+                  <Shield className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold">Secure Storage</h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Your notes are encrypted and safely stored in the cloud.
+                <h3 className="text-xl font-bold">Secure Trading</h3>
+                <p className="text-gray-300">
+                  Bank-grade security and ZIMRA-compliant transactions for peace of mind.
                 </p>
               </div>
-              <div className="flex flex-col items-center space-y-4 text-center">
-                <div className="rounded-full bg-primary p-3">
-                  <svg
-                    className=" h-6 w-6 text-white"
-                    fill="none"
-                    height="24"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.3-4.3" />
-                  </svg>
+              <div className="flex flex-col items-center space-y-4 text-center p-6 rounded-lg bg-[#1A2342]">
+                <div className="rounded-full bg-[#6571E3] p-3">
+                  <Zap className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold">Smart Search</h3>
-                <p className="text-gray-500 dark:text-gray-400">
-                  Find any note instantly with our powerful search feature.
+                <h3 className="text-xl font-bold">Lightning Fast Execution</h3>
+                <p className="text-gray-300">
+                  Place orders in milliseconds with our high-performance trading engine.
                 </p>
               </div>
             </div>
           </div>
         </section>
-        <section id="pricing" className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
-              Choose Your Plan
-            </h2>
-            <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Free</CardTitle>
-                  <CardDescription>For personal use</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-4xl font-bold">$0</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    per month
-                  </p>
-                  <ul className="mt-4 space-y-2">
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-green-500" />
-                      10 free notes
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-green-500" />
-                      Basic search
-                    </li>
-                    <li className="flex items-center">
-                      <X className="mr-2 h-4 w-4 text-red-500" />
-                      Note locking
-                    </li>
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Button className="w-full">Get Started</Button>
-                </CardFooter>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Pro</CardTitle>
-                  <CardDescription>For power users</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-4xl font-bold">$10</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    per month
-                  </p>
-                  <ul className="mt-4 space-y-2">
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-green-500" />
-                      Up to 100 notes
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-green-500" />
-                      Advanced search
-                    </li>
-                    <li className="flex items-center">
-                      <X className="mr-2 h-4 w-4 text-red-500" />
-                      Note locking
-                    </li>
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Button className="w-full">Upgrade to Pro</Button>
-                </CardFooter>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Ultimate</CardTitle>
-                  <CardDescription>For serious note-takers</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-4xl font-bold">$50</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    per month
-                  </p>
-                  <ul className="mt-4 space-y-2">
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-green-500" />
-                      Unlimited notes
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-green-500" />
-                      Advanced search
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="mr-2 h-4 w-4 text-green-500" />
-                      Note locking
-                    </li>
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Button className="w-full">Upgrade to Ultimate</Button>
-                </CardFooter>
-              </Card>
-            </div>
-          </div>
-        </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+
+        {/* Trading Platforms Section */}
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-[#1A2342]">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Start Taking Better Notes Today
+            <div className="flex flex-col md:flex-row items-center gap-12">
+              <div className="flex-1 space-y-6">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                  Trade <span className="text-[#FBBC06]">Anywhere</span>
                 </h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Join thousands of satisfied users who have transformed their
-                  note-taking experience with NoteWorthy.
+                <p className="text-lg text-gray-300">
+                  Access Zimbabwe's financial markets from your desktop, tablet, or mobile device with our powerful trading platforms.
                 </p>
-              </div>
-              <div className="w-full max-w-sm space-y-2">
-                <Button className="w-full" asChild>
-                  <Link href="/signup">Get Started for Free</Link>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <Smartphone className="h-6 w-6 text-[#6571E3]" />
+                    <span>Mobile Trading App</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Globe className="h-6 w-6 text-[#6571E3]" />
+                    <span>Web Platform</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <BarChart2 className="h-6 w-6 text-[#6571E3]" />
+                    <span>Advanced Desktop Platform</span>
+                  </div>
+                </div>
+                <Button className="bg-[#6571E3] hover:bg-[#6571E3]/90 mt-6" asChild>
+                  <Link href="/platforms">Explore Platforms</Link>
                 </Button>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  No credit card required. Start with our free plan and upgrade
-                  anytime.
-                </p>
               </div>
+              <div className="flex-1">
+                {/* Placeholder for device mockups */}
+                <div className="bg-[#0C1427] rounded-xl p-8 aspect-video flex items-center justify-center border border-[#6571E3]/30">
+                  <p className="text-gray-400">Trading Platform Preview</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Call to Action */}
+        <section className="w-full py-20 bg-gradient-to-b from-[#1A2342] to-[#0C1427]">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-6 text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                Ready to Start Trading?
+              </h2>
+              <p className="text-lg text-gray-300">
+                Join thousands of Zimbabwean investors who trust C-Trade for their securities trading needs.
+              </p>
+              <Button className="bg-[#048B3F] hover:bg-[#048B3F]/90 h-12 px-8" asChild>
+                <Link href="/signup">Open Your Account Today</Link>
+              </Button>
             </div>
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          © 2024 NoteWorthy. All rights reserved.
-        </p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Terms of Service
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Privacy
-          </Link>
-        </nav>
+
+      {/* Footer */}
+      <footer className="flex flex-col gap-6 py-12 w-full border-t border-[#1A2342] bg-[#0C1427]">
+        <div className="container px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Markets</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/stocks" className="hover:text-[#6571E3]">Stocks</Link></li>
+                <li><Link href="/bonds" className="hover:text-[#6571E3]">Bonds</Link></li>
+                <li><Link href="/forex" className="hover:text-[#6571E3]">Forex</Link></li>
+                <li><Link href="/etfs" className="hover:text-[#6571E3]">ETFs</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Platforms</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/web" className="hover:text-[#6571E3]">Web Platform</Link></li>
+                <li><Link href="/mobile" className="hover:text-[#6571E3]">Mobile App</Link></li>
+                <li><Link href="/desktop" className="hover:text-[#6571E3]">Desktop</Link></li>
+                <li><Link href="/api" className="hover:text-[#6571E3]">Trading API</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/about" className="hover:text-[#6571E3]">About Us</Link></li>
+                <li><Link href="/careers" className="hover:text-[#6571E3]">Careers</Link></li>
+                <li><Link href="/contact" className="hover:text-[#6571E3]">Contact</Link></li>
+                <li><Link href="/news" className="hover:text-[#6571E3]">News</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Legal</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/terms" className="hover:text-[#6571E3]">Terms</Link></li>
+                <li><Link href="/privacy" className="hover:text-[#6571E3]">Privacy</Link></li>
+                <li><Link href="/compliance" className="hover:text-[#6571E3]">Compliance</Link></li>
+                <li><Link href="/disclosures" className="hover:text-[#6571E3]">Disclosures</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-[#1A2342] mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
+            <p className="text-sm text-gray-400">
+              © 2024 C-Trade Securities (Pvt) Ltd. All rights reserved.
+            </p>
+            <div className="flex gap-6 mt-4 sm:mt-0">
+              <Link href="#" className="text-gray-400 hover:text-[#6571E3]">
+                <span className="sr-only">Facebook</span>
+                {/* Facebook icon */}
+              </Link>
+              <Link href="#" className="text-gray-400 hover:text-[#6571E3]">
+                <span className="sr-only">Twitter</span>
+                {/* Twitter icon */}
+              </Link>
+              <Link href="#" className="text-gray-400 hover:text-[#6571E3]">
+                <span className="sr-only">LinkedIn</span>
+                {/* LinkedIn icon */}
+              </Link>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );

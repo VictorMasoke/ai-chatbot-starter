@@ -4,65 +4,47 @@ import { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { X, MessageCircle, Send, Loader2, ArrowDownCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChat } from "@ai-sdk/react";
-
 import LandingSections from "@/components/LandingSections";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
+import fetchTrainingData from "@/lib/trainingData"
 
 export default function Chat() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showChatIcon, setShowChatIcon] = useState(false);
   const chatIconRef = useRef<HTMLButtonElement>(null);
-  const scrolRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { messages, input, handleInputChange, handleSubmit, stop, reload, error, isLoading, } = useChat({ api: "/api/gemini" });
 
-  const {
-    messages,
-    input,
-    handleInputChange,
-    handleSubmit,
-    stop,
-    reload,
-    error,
-    isLoading,
-  } = useChat({ api: "/api/gemini" });
+  fetchTrainingData()
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) {
-        setShowChatIcon(true);
-      } else {
-        setShowChatIcon(false);
-        setIsChatOpen(false);
-      }
+      setShowChatIcon(window.scrollY > 200);
+      if (window.scrollY <= 200) setIsChatOpen(false);
     };
 
     handleScroll();
-
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    if (scrolRef.current) {
-      scrolRef.current.scrollIntoView({ behavior: "smooth" });
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages])
-  
+  }, [messages]);
 
-  const toogleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
+  const toggleChat = () => setIsChatOpen(!isChatOpen);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-[#0C1427] text-white">
       <LandingSections />
 
       <AnimatePresence>
@@ -75,15 +57,11 @@ export default function Chat() {
           >
             <Button
               ref={chatIconRef}
-              onClick={toogleChat}
+              onClick={toggleChat}
               size="icon"
-              className="rounded-full size-14 p-2 shadow-lg"
+              className="rounded-full size-14 p-2 shadow-lg bg-[#FBBC06] text-[#0C1427] hover:bg-[#048B3F]"
             >
-              {!isChatOpen ? (
-                <MessageCircle className="sixe-12" />
-              ) : (
-                <ArrowDownCircle />
-              )}
+              {!isChatOpen ? <MessageCircle className="size-12" /> : <ArrowDownCircle />}
             </Button>
           </motion.div>
         )}
@@ -98,16 +76,16 @@ export default function Chat() {
             transition={{ duration: 0.2 }}
             className="fixed bottom-20 right-4 z-50 w-[95%] md:w-[500px]"
           >
-            <Card className="border-2">
+            <Card className="border-2 border-[#6571E3] bg-[#0C1427] text-white">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-                <CardTitle className="text-lg font-bold">
-                  Chat with Maggie
+                <CardTitle className="text-lg font-bold text-[#FBBC06]">
+                  Chat with Shantie
                 </CardTitle>
                 <Button
-                  onClick={toogleChat}
+                  onClick={toggleChat}
                   size="icon"
                   variant="ghost"
-                  className="px-2 py-0"
+                  className="px-2 py-0 text-[#FBBC06]"
                 >
                   <X className="size-12" />
                   <span className="sr-only">Close</span>
@@ -117,103 +95,68 @@ export default function Chat() {
               <CardContent>
                 <ScrollArea className="h-[300px] pr-4">
                   {messages?.length === 0 && (
-                    <div className="w-full mt-32 text-gray-500 items-center justify-center flex gap-3">
+                    <div className="w-full mt-32 text-gray-400 flex justify-center gap-3">
                       No messages yet
                     </div>
                   )}
                   {messages?.map((message, index) => (
-                    <div
-                      key={index}
-                      className={`mb-4 ${
-                        message.role === "user" ? "text-right" : "text-left"
-                      }`}
-                    >
+                    <div key={index} className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}>
                       <div
                         className={`inline-block p-3 rounded-lg ${
                           message.role === "user"
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-muted"
+                            ? "bg-[#6571E3] text-white"
+                            : "bg-[#048B3F] text-white"
                         }`}
                       >
                         <ReactMarkdown
                           children={message.content}
                           remarkPlugins={[remarkGfm]}
                           components={{
-                            code({
-                              node,
-                              inline,
-                              className,
-                              children,
-                              ...props
-                            }) {
+                            code({ inline, children, ...props }) {
                               return inline ? (
-                                <code
-                                  {...props}
-                                  className="bg-gray-200 px-1 rounded"
-                                >
+                                <code {...props} className="bg-gray-800 px-1 rounded text-[#FBBC06]">
                                   {children}
                                 </code>
                               ) : (
-                                <pre
-                                  {...props}
-                                  className="bg-gray-200 p-2 rounded"
-                                >
+                                <pre {...props} className="bg-gray-800 p-2 rounded text-[#FBBC06]">
                                   {children}
                                 </pre>
                               );
                             },
-                            ul: ({ children }) => (
-                              <ul className="list-disc ml-4">{children}</ul>
-                            ),
-                            ol: ({ children }) => (
-                              <li className="list-decimal ml-4">{children}</li>
-                            ),
                           }}
                         />
                       </div>
                     </div>
                   ))}
                   {isLoading && (
-                    <div className="w-full items-center flex justify-center gap-3">
-                      <Loader2 className="animate-spin h-5 w-5 text-primary" />
-                      <button
-                        className="underline"
-                        type="button"
-                        onClick={() => stop()}
-                      >
+                    <div className="w-full flex justify-center gap-3">
+                      <Loader2 className="animate-spin h-5 w-5 text-[#FBBC06]" />
+                      <button className="underline" type="button" onClick={() => stop()}>
                         abort
                       </button>
                     </div>
                   )}
                   {error && (
-                    <div className="w-full items-center flex justify-center gap-3">
-                      <div>An error occured</div>
-                      <button
-                        className="underline"
-                        type="button"
-                        onClick={() => reload()}
-                      >
+                    <div className="w-full flex justify-center gap-3">
+                      <div>An error occurred</div>
+                      <button className="underline" type="button" onClick={() => reload()}>
                         retry
                       </button>
                     </div>
                   )}
-                  
+                  <div ref={scrollRef} />
                 </ScrollArea>
               </CardContent>
+
               <CardFooter>
                 <form onSubmit={handleSubmit} className="flex w-full gap-2">
                   <Input
                     value={input}
                     onChange={handleInputChange}
                     placeholder="Type your message here..."
-                    className="flex-1"
+                    className="flex-1 bg-gray-900 text-white border-[#6571E3]"
                   />
-                  <Button
-                    type="submit"
-                    className="size-9"
-                    disabled={isLoading}
-                    size="icon"
-                  >
+                  <Button type="submit" className="size-9 bg-[#FBBC06] hover:bg-[#048B3F] text-[#0C1427]" disabled={isLoading} size="icon">
                     <Send className="size-4" />
                   </Button>
                 </form>
