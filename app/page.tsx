@@ -11,7 +11,6 @@ import { X, MessageCircle, Send, Loader2, ArrowDownCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChat } from "@ai-sdk/react";
 import LandingSections from "@/components/LandingSections";
-import fetchTrainingData from "@/lib/trainingData"
 
 export default function Chat() {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -19,10 +18,6 @@ export default function Chat() {
   const chatIconRef = useRef<HTMLButtonElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { messages, input, handleInputChange, handleSubmit, stop, reload, error, isLoading, } = useChat({ api: "/api/gemini" });
-
-  fetchTrainingData()
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
 
   useEffect(() => {
     const handleScroll = () => {

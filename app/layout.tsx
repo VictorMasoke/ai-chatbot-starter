@@ -1,36 +1,23 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "C-Trade Chatbot",
-  description: "AI powered chatbot for C-Trade",
+  title: "Admin Dashboard",
+  description: "C-Trade Admin Dashboard",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <body className="bg-[#0C1427] text-[#FFFFFF]">
-        <div className="mx-auto pl-10 pr-10 min-h-screen">
-          <Header />
-          {children}
-        </div>
+    <html lang="en">
+      <body className={inter.className}>
+        {children}
       </body>
     </html>
   );
